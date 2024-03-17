@@ -15,8 +15,42 @@ pip install -r requirements.txt
 ## Usage
 
 1. Clone the repository:
+
+```bash
+git clone https://github.com/uemajin/political_engagement_research.git
+```
+
 2. Navigate to the project directory:
-3. Run the Jupyter notebook in the root directory to execute the main of the project.
+
+```bash
+cd political_engagement_research
+```
+
+3. Set up and activate a virtual environment (optional but recommended):
+
+```bash
+python -m venv venv
+```
+
+For Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+For macOS/Linux::
+
+```bash
+source venv/bin/activate
+```
+
+4. Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+5. Run the Jupyter notebook in the root directory to execute the main of the project.
 
 ## Project Structure
 
