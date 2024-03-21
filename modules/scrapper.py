@@ -4,23 +4,48 @@ from bs4 import BeautifulSoup
 
 import json
 
+BASE_URL = 'https://www.instagram.com'
+
+def get_posts_from_profile(driver, profile_url):
+    
+        driver.get(profile_url)
+        time.sleep(10)
+    
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+
+        elements = soup.find_all(class_="x1i10hfl", href=True)
+
+        hrefs_starting_with_p = [element['href'] for element in elements if element['href'].startswith('/p/')]
+
+        list_of_posts = [BASE_URL + x for x in hrefs_starting_with_p]
+
+        return list_of_posts
+
 def get_data_from_instagram():
 
     driver = login_in_instagram()
 
-    comments = scrap_comments_from_url(driver, 'https://www.instagram.com/p/C4RKBgCRAEk/')
+    # comments = scrap_comments_from_url(driver, 'https://www.instagram.com/p/C4RKBgCRAEk/')
 
     # Get the list of candidates
-    
-    ''''
-    TBD: List all the posts from each candidate function
-    '''
+
+    with open('data/candidates.json', 'r') as f:
+        candidates = json.load(f)
 
     # Get the list of posts from each candidate
+        
+    for candidate_profile in candidates:
+        posts = get_posts_from_profile(driver, candidate_profile["instagram_profile"])
+
+        candidate_profile['comments'] = []
+
+        for post in posts:
+
+            candidate_profile['comments'] += scrap_comments_from_url(driver, post)
 
     driver.quit()
 
-    return comments
+    return candidates
 
     
 def scrap_comments_from_url(driver, url):
