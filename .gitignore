@@ -2,3 +2,7 @@
 todo.md
 __pycache__
 *.xlsx
+.python-version
+data/*
+logs
+*.ipynb
