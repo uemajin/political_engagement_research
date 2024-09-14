@@ -1,4 +1,4 @@
-from modules.scrapper import *
+from src.data.instagram import *
 import pandas as pd
 
 def main():
@@ -10,8 +10,7 @@ def main():
         df_temp = pd.DataFrame(dfCandidate)
         df = pd.concat([df, df_temp])
     
-    df.to_excel('data.xlsx', index=False)
+    df.to_excel('data/processed/data.xlsx', index=False)
 
 if __name__ == '__main__':
     main()
-    

@@ -5,4 +5,5 @@ __pycache__
 .python-version
 data/*
 logs
-*.ipynb
+data/_old
+.DS_Store
